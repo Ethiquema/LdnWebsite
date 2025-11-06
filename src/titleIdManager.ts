@@ -11,10 +11,11 @@ class TitleIdManager {
   private refreshInterval: NodeJS.Timeout | null = null;
 
   constructor() {
-    this.filePath = "/data/ryuldn/otherTitleIds.txt";
+    const dataDirectory = process.env.DATA_PATH ?? "data";
+    this.filePath = `${dataDirectory}/ryuldn/otherTitleIds.txt`;
     
     if (!existsSync(this.filePath)) {
-      mkdirSync("/data/ryuldn", { recursive: true });
+      mkdirSync(dataDirectory, { recursive: true });
       writeFileSync(this.filePath, "", "utf8");
     }
     
