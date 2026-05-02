@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
-import { join } from "path";
+import { dirname } from "path";
 
 interface TitleIdMapping {
   [titleId: string]: string;
@@ -15,7 +15,7 @@ class TitleIdManager {
     this.filePath = `${dataDirectory}/ryuldn/otherTitleIds.txt`;
     
     if (!existsSync(this.filePath)) {
-      mkdirSync(dataDirectory, { recursive: true });
+      mkdirSync(dirname(this.filePath), { recursive: true });
       writeFileSync(this.filePath, "", "utf8");
     }
     

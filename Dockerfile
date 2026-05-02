@@ -20,7 +20,8 @@ COPY --from=build --chown=node:node /home/node/app/public /home/node/app/public
 COPY --from=build --chown=node:node /home/node/app/package.json /home/node/app/package-lock.json /home/node/app/
 COPY --from=build --chown=node:node /home/node/app/node_modules /home/node/app/node_modules
 
-RUN mkdir /home/node/app/data
+RUN mkdir -p /home/node/app/data/ryuldn \
+    && chown -R nobody:nogroup /home/node/app/data
 
 USER nobody
 
